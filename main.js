@@ -42,15 +42,6 @@ function startServer() {
     });
 }
 
-function generatePolicyNumber() {
-    var highest = 999999999;
-    var policyNumber = Math.floor(Math.random() * highest).toString();
-    while (policyNumber.length < 12) {
-        policyNumber = '0' + policyNumber;
-    }
-    return 'FG' + policyNumber;
-}
-
 function handleRequest(request, response) {
 
     var errorDuringGeneration = function (error) {
@@ -60,13 +51,13 @@ function handleRequest(request, response) {
     try {
         var queryObject = url.parse(request.url, true).query;
 
-        if (!queryObject.firstName || !queryObject.lastName || !queryObject.startDate || !queryObject.endDate) {
+        if (!queryObject.policyNumber || !queryObject.firstName || !queryObject.lastName || !queryObject.startDate || !queryObject.endDate) {
             processError('Incorrect parameters: ' + JSON.stringify(queryObject), response);
         } else {
 
             signature.gatherFiles(function (files) {
                 signature.addPass(files, {
-                    POLICY_NUMBER: generatePolicyNumber(),
+                    POLICY_NUMBER: queryObject.policyNumber,
                     FIRST_NAME: queryObject.firstName,
                     LAST_NAME: queryObject.lastName,
                     START_DATE: queryObject.startDate,
