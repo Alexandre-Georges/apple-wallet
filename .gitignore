@@ -1,0 +1,10 @@
+passbook-signature.iml
+certificates/AWDRCA.pem
+certificates/pass-certificate-key.p12
+certificates/pass-certificate.pem
+certificates/pass-key.pem
+node_modules
+sources/icon.png
+sources/logo.png
+sources/strip.png
+pass.json

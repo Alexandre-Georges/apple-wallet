@@ -1,0 +1,1 @@
+node main.js 8080 password ./certificates ./sources ./template/pass.json
